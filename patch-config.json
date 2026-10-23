@@ -1,16 +1,64 @@
 {
-  "patch_list": [
-    { "app_name": "youtube", "source": "morphe" },
-    { "app_name": "youtube-music", "source": "morphe" },
-    { "app_name": "reddit", "source": "morphe" },
-    { "app_name": "instagram", "source": "piko" },
-    { "app_name": "amazon-shopping", "source": "rushiranpise" },
-    { "app_name": "rocket-money", "source": "rushiranpise" },
-    { "app_name": "slope", "source": "rushiranpise" },
-    { "app_name": "nzb360", "source": "rushiranpise" },
-    { "app_name": "today-weather", "source": "rushiranpise" },
-    { "app_name": "windy", "source": "Hoo" },
-    { "app_name": "capcut", "source": "kveld9" },
-    { "app_name": "discord", "source": "VenusIsJaded" }
-  ]
+    "patch_list": [
+        {
+            "app_name": "youtube",
+            "source": "morphe"
+        },
+        {
+            "app_name": "youtube-music",
+            "source": "morphe"
+        },
+        {
+            "app_name": "reddit",
+            "source": "morphe"
+        },
+        {
+            "app_name": "instagram",
+            "source": "piko"
+        },
+        {
+            "app_name": "amazon-shopping",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "rocket-money",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "slope",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "nzb360",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "today-weather",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "windy",
+            "source": "Hoo"
+        },
+        {
+            "app_name": "capcut",
+            "source": "kveld9"
+        },
+        {
+            "app_name": "discord",
+            "source": "VenusIsJaded"
+        },
+        {
+            "app_name": "brave",
+            "source": "kveld9-main"
+        },
+        {
+            "app_name": "firefox",
+            "source": "heval"
+        },
+        {
+            "app_name": "plague-inc",
+            "source": "okish"
+        }
+    ]
 }

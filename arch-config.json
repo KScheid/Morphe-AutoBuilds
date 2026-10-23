@@ -82,5 +82,26 @@
         "arches": [
             "universal"
         ]
+    },
+    {
+        "app_name": "brave",
+        "source": "kveld9-main",
+        "arches": [
+            "arm64-v8a"
+        ]
+    },
+    {
+        "app_name": "firefox",
+        "source": "heval",
+        "arches": [
+            "arm64-v8a"
+        ]
+    },
+    {
+        "app_name": "plague-inc",
+        "source": "okish",
+        "arches": [
+            "arm64-v8a"
+        ]
     }
 ]
