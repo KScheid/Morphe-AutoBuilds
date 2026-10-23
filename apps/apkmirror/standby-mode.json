@@ -1,0 +1,10 @@
+{
+    "org": "zetabit-tecnologia",
+    "name": "standby-mode-pro",
+    "release_prefix": "standby-mode-clock-widgets",
+    "type": "APK",
+    "arch": "universal",
+    "dpi": "120-480dpi",
+    "package": "br.com.zetabit.ios_standby",
+    "version": ""
+}

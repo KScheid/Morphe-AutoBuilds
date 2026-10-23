@@ -83,6 +83,26 @@
         {
             "app_name": "flexcil",
             "source": "ample"
+        },
+        {
+            "app_name": "altos-odyssey",
+            "source": "okish"
+        },
+        {
+            "app_name": "myscript-notes",
+            "source": "hxreborn"
+        },
+        {
+            "app_name": "polytopia",
+            "source": "miguel"
+        },
+        {
+            "app_name": "stellarium",
+            "source": "android-patches-xtra"
+        },
+        {
+            "app_name": "standby-mode",
+            "source": "r3d-patchlab"
         }
     ]
 }
