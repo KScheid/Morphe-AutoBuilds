@@ -117,5 +117,19 @@
         "arches": [
             "universal"
         ]
+    },
+    {
+        "app_name": "wallverse",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "beta-maniac",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
     }
 ]

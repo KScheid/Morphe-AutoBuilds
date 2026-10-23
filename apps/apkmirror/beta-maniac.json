@@ -1,0 +1,9 @@
+{
+  "org": "mirko-dimartino",
+  "name": "beta-maniac-life-of-a-beta-tester-2",
+  "type": "APK",
+  "arch": "universal",
+  "dpi": "120-640dpi",
+  "package": "it.mirko.beta",
+  "version": ""
+}

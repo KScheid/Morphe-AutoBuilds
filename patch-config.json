@@ -67,6 +67,14 @@
         {
             "app_name": "adobe-scan",
             "source": "aidan"
+        },
+        {
+            "app_name": "wallverse",
+            "source": "rushiranpise"
+        },
+        {
+            "app_name": "beta-maniac",
+            "source": "rushiranpise"
         }
     ]
 }
