@@ -103,6 +103,26 @@
         {
             "app_name": "standby-mode",
             "source": "r3d-patchlab"
+        },
+        {
+            "app_name": "anytracker",
+            "source": "hxreborn"
+        },
+        {
+            "app_name": "autozen",
+            "source": "hoomans"
+        },
+        {
+            "app_name": "file-tree-size",
+            "source": "gitgitro"
+        },
+        {
+            "app_name": "foldersync",
+            "source": "hoomans"
+        },
+        {
+            "app_name": "accubattery",
+            "source": "rushiranpise"
         }
     ]
 }

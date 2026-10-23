@@ -102,5 +102,25 @@
     "standby-mode": {
         "name": "StandBy Mode",
         "id": "br.com.zetabit.ios_standby"
+    },
+    "anytracker": {
+        "name": "AnyTracker",
+        "id": "com.shervinkoushan.anyTracker"
+    },
+    "autozen": {
+        "name": "AutoZen",
+        "id": "com.zenthek.autozen"
+    },
+    "file-tree-size": {
+        "name": "File Tree Size",
+        "id": "com.devone.filetreesize"
+    },
+    "foldersync": {
+        "name": "FolderSync",
+        "id": "dk.tacit.android.foldersync.lite"
+    },
+    "accubattery": {
+        "name": "AccuBattery",
+        "id": "com.digibites.accubattery"
     }
 }
