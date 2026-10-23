@@ -1,6 +1,7 @@
 {
     "org": "brave-software",
     "name": "brave-browser",
+    "release_prefix": "brave-private-web-browser-vpn",
     "type": "",
     "arch": "",
     "dpi": "",
