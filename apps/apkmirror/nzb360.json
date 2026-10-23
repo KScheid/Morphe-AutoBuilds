@@ -1,6 +1,7 @@
 {
     "org": "kevin-foreman",
     "name": "nzb360",
+    "release_prefix": "nzb360-media-server-manager",
     "type": "",
     "arch": "",
     "dpi": "",

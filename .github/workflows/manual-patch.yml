@@ -31,7 +31,7 @@ on:
           - universal
         default: 'universal'
       replace_in_release:
-        description: 'Replace APK in existing release'
+        description: 'Publish to GitHub Releases'
         required: true
         type: boolean
         default: true
@@ -140,21 +140,14 @@ jobs:
         if: ${{ inputs.replace_in_release == true }}
         run: pip install requests
 
-      - name: Publish to GitLab Releases
+      - name: Publish to GitHub Releases
         if: ${{ inputs.replace_in_release == true }}
         env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_PROJECT_ID: "87288318"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ -z "$GITLAB_TOKEN" ]; then
-            echo "GITLAB_TOKEN secret is not set on this repo."
-            exit 1
-          fi
           mkdir -p ./release-apks
           cp -f *.apk ./release-apks/ 2>/dev/null || true
-          python scripts/gitlab_publish_release.py \
-            --apks-dir ./release-apks \
-            --merge
+          python scripts/github_publish_release.py --apks-dir ./release-apks
 
       - name: Publish Summary
         if: ${{ inputs.replace_in_release == true }}
