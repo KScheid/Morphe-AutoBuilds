@@ -132,6 +132,9 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
         if not patches:
             # Try .jar extension for patches
             patches = utils.find_file(download_files, contains="patches", suffix=".jar")
+        if not patches:
+            # Some ReVanced-fork CLIs (e.g. AmpleReVanced) ship patches as .mpp
+            patches = utils.find_file(download_files, contains="patches", suffix=".mpp")
 
     # Validate tools
     if not cli:

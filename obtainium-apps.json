@@ -1,0 +1,106 @@
+{
+    "youtube": {
+        "name": "YouTube",
+        "id": "app.morphe.android.youtube"
+    },
+    "youtube-music": {
+        "name": "YouTube Music",
+        "id": "app.morphe.android.apps.youtube.music"
+    },
+    "reddit": {
+        "name": "Reddit",
+        "id": "com.reddit.frontpage"
+    },
+    "instagram": {
+        "name": "Instagram",
+        "id": "com.instagram.android"
+    },
+    "amazon-shopping": {
+        "name": "Amazon Shopping",
+        "id": "com.amazon.mShop.android.shopping"
+    },
+    "rocket-money": {
+        "name": "Rocket Money",
+        "id": "com.truebill"
+    },
+    "slope": {
+        "name": "Slopes",
+        "id": "com.consumedbycode.slopes"
+    },
+    "nzb360": {
+        "name": "nzb360",
+        "id": "com.kevinforeman.nzb360"
+    },
+    "today-weather": {
+        "name": "Today Weather",
+        "id": "mobi.lockdown.weather"
+    },
+    "windy": {
+        "name": "Windy",
+        "id": "com.windyty.android"
+    },
+    "capcut": {
+        "name": "CapCut",
+        "id": "com.lemon.lvoverseas"
+    },
+    "discord": {
+        "name": "Discord",
+        "id": "com.discord"
+    },
+    "brave": {
+        "name": "Brave",
+        "id": "com.brave.browser"
+    },
+    "firefox": {
+        "name": "Firefox",
+        "id": "org.mozilla.firefox"
+    },
+    "plague-inc": {
+        "name": "Plague Inc.",
+        "id": "com.miniclip.plagueinc"
+    },
+    "sleep-as-android": {
+        "name": "Sleep as Android",
+        "id": "com.urbandroid.sleep"
+    },
+    "adobe-scan": {
+        "name": "Adobe Scan",
+        "id": "com.adobe.scan.android"
+    },
+    "wallverse": {
+        "name": "Wallverse",
+        "id": "com.wallverse.wallpapers"
+    },
+    "beta-maniac": {
+        "name": "Beta Maniac",
+        "id": "it.mirko.beta"
+    },
+    "medium": {
+        "name": "Medium",
+        "id": "com.medium.reader"
+    },
+    "flexcil": {
+        "name": "Flexcil",
+        "id": "com.flexcil.flexcilnote"
+    },
+    "altos-odyssey": {
+        "name": "Alto's Odyssey",
+        "id": "com.noodlecake.altosodyssey"
+    },
+    "myscript-notes": {
+        "name": "MyScript Notes",
+        "id": "com.myscript.nebo"
+    },
+    "polytopia": {
+        "name": "The Battle of Polytopia",
+        "id": "air.com.midjiwan.polytopia"
+    },
+    "stellarium": {
+        "name": "Stellarium",
+        "id": "com.noctuasoftware.stellarium_free"
+    },
+    "standby-mode": {
+        "name": "StandBy Mode",
+        "id": "br.com.zetabit.ios_standby"
+    }
+}
