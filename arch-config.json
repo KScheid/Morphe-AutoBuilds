@@ -1,37 +1,86 @@
 [
-  {
-    "app_name": "youtube-music",
-    "source": "morphe",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  },
-  {
-    "app_name": "google-photos",
-    "source": "rookie",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  },
-  {
-    "app_name": "cake",
-    "source": "custom-patches",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  },
     {
-    "app_name": "instagram",
-    "source": "piko",
-    "arches": ["arm64-v8a"]
-  },
-  {
-    "app_name": "phone",
-    "source": "taknok",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  },
-  {
-    "app_name": "pokecardex",
-    "source": "almewty",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  },
-  {
-    "app_name": "messenger",
-    "source": "revanced",
-    "arches": ["arm64-v8a", "armeabi-v7a"]
-  }
+        "app_name": "youtube",
+        "source": "morphe",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "youtube-music",
+        "source": "morphe",
+        "arches": [
+            "arm64-v8a"
+        ]
+    },
+    {
+        "app_name": "reddit",
+        "source": "morphe",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "instagram",
+        "source": "piko",
+        "arches": [
+            "arm64-v8a"
+        ]
+    },
+    {
+        "app_name": "amazon-shopping",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "rocket-money",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "slope",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "nzb360",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "today-weather",
+        "source": "rushiranpise",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "windy",
+        "source": "Hoo",
+        "arches": [
+            "universal"
+        ]
+    },
+    {
+        "app_name": "capcut",
+        "source": "kveld9",
+        "arches": [
+            "arm64-v8a"
+        ]
+    },
+    {
+        "app_name": "discord",
+        "source": "VenusIsJaded",
+        "arches": [
+            "universal"
+        ]
+    }
 ]

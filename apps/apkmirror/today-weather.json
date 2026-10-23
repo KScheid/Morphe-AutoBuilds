@@ -1,0 +1,10 @@
+{
+    "org": "todayweather-co",
+    "name": "today-weather-forecast-radar-severe-alert",
+    "release_prefix": "today-weatherdata-by-noaa-nws",
+    "type": "",
+    "arch": "",
+    "dpi": "",
+    "package": "mobi.lockdown.weather",
+    "version": ""
+}
