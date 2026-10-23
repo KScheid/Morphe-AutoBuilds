@@ -1,0 +1,9 @@
+{
+    "org": "a-medium-corporation",
+    "name": "medium",
+    "type": "APK",
+    "arch": "universal",
+    "dpi": "nodpi",
+    "package": "com.medium.reader",
+    "version": ""
+}

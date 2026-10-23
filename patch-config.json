@@ -75,6 +75,14 @@
         {
             "app_name": "beta-maniac",
             "source": "rushiranpise"
+        },
+        {
+            "app_name": "medium",
+            "source": "bufferk"
+        },
+        {
+            "app_name": "flexcil",
+            "source": "ample"
         }
     ]
 }
