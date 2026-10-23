@@ -3,12 +3,12 @@
         "name": "revanced-patches"
     },
     {
-        "user": "AmpleReVanced",
-        "repo": "revanced-cli",
+        "user": "MorpheApp",
+        "repo": "morphe-cli",
         "tag": "latest"
     },
     {
-        "user": "AmpleRevanced",
+        "user": "AmpleReVanced",
         "repo": "revanced-patches",
         "tag": "latest"
     }
