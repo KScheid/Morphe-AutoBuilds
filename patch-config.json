@@ -59,6 +59,14 @@
         {
             "app_name": "plague-inc",
             "source": "okish"
+        },
+        {
+            "app_name": "sleep-as-android",
+            "source": "Hoo"
+        },
+        {
+            "app_name": "adobe-scan",
+            "source": "aidan"
         }
     ]
 }
