@@ -55,13 +55,29 @@ def get_download_link(version: str, app_name: str, config: dict) -> str | None:
     tag = config.get("tag")
     if not repo or not tag:
         return None
-        
+
+    # Optional: tag template such as "v{version}" for repos that publish one
+    # release per version (e.g. brave/brave-browser).
+    if "{version}" in tag:
+        tag = tag.replace("{version}", version)
+
     url = f"https://api.github.com/repos/{repo}/releases/tags/{tag}"
     try:
         response = session.get(url, headers=_get_headers())
         if response.status_code == 200:
             data = response.json()
             arch = config.get("arch", "arm64-v8a").lower()
+
+            # Optional: exact asset file name, for repos whose APK names do
+            # not contain the version (e.g. Brave's Bravemonoarm64.apk).
+            wanted = (config.get("asset") or "").lower()
+            if wanted:
+                for asset in data.get("assets", []):
+                    if asset.get("name", "").lower() == wanted:
+                        logging.info(f"Found GitHub asset {wanted} for {app_name} {version}")
+                        return asset.get("browser_download_url")
+                logging.warning(f"GitHub asset {wanted} not found in {repo}@{tag}")
+                return None
             
             for asset in data.get("assets", []):
                 name = asset.get("name", "").lower()
