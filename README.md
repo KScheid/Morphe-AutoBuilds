@@ -2,20 +2,17 @@
 
 # 🔧 Automated Android Build Pipeline
 
-[![Daily Build](https://img.shields.io/github/actions/workflow/status/RookieEnough/Morphe-AutoBuilds/patch.yml?label=Daily%20Build&style=for-the-badge&color=2ea44f)](https://github.com/RookieEnough/Morphe-AutoBuilds/actions/workflows/patch.yml)
+[![Daily Build](https://img.shields.io/github/actions/workflow/status/KScheid/Morphe-AutoBuilds/patch.yml?label=Daily%20Build&style=for-the-badge&color=2ea44f)](https://github.com/KScheid/Morphe-AutoBuilds/actions/workflows/patch.yml)
 [![Python Version](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![License](https://img.shields.io/github/license/RookieEnough/Revanced-AutoBuilds?style=for-the-badge&color=orange)](LICENSE)
+[![License](https://img.shields.io/github/license/KScheid/Morphe-AutoBuilds?style=for-the-badge&color=orange)](LICENSE)
+
+
+
 
 
 <p align="center">
-  <a href="https://ko-fi.com/rookie_z" target="_blank"><img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" height="30" style="height:30px; border-radius:8px; display:inline-block;" alt="Donate via Ko-fi" /></a>
-  &nbsp;&nbsp;
-  <a href="https://buymeachai.ezee.li/RookieZ" target="_blank"><img src="https://raw.githubusercontent.com/TakiShiwa/donate-with-upi/ffbb38749891aeb62e758a3692698e346e3df2da/Button/SVG/UPI-light-blue-01.svg" height="30" style="height:30px; border-radius:8px; display:inline-block;" alt="Donate via UPI" /></a>
-  <br />
-  <a href="https://paypal.me/RookieEnough" target="_blank"><img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" height="50" style="height:50px; border-radius:8px; display:inline-block; margin-top:8px;" alt="Donate via PayPal" /></a>
+  <sub>Personal fork of <a href="https://github.com/RookieEnough/Morphe-AutoBuilds">RookieEnough/Morphe-AutoBuilds</a> — all credit for the original pipeline goes to its author. See <a href="#-changes-in-this-fork">changes in this fork</a>.</sub>
 </p>
-
-
 
 <p align="center">
   <strong>Config-driven CI builds for Android</strong><br>
@@ -26,8 +23,8 @@
 A sophisticated, automated pipeline that assembles installable Android applications for <strong>non-rooted devices</strong>. The system fetches build tooling, downloads base APKs from multiple sources, applies community build configurations, and produces architecture-specific outputs.
 </p>
 
-[![Report Bug](https://img.shields.io/badge/Report%20Bug-0A0A0A?style=flat&logo=github&logoColor=white)](https://github.com/RookieEnough/Morphe-AutoBuilds/issues)
-[![Request Feature](https://img.shields.io/badge/Request%20Feature-0A0A0A?style=flat&logo=github&logoColor=white)](https://github.com/RookieEnough/Morphe-AutoBuilds/issues)
+[![Report Bug](https://img.shields.io/badge/Report%20Bug-0A0A0A?style=flat&logo=github&logoColor=white)](https://github.com/KScheid/Morphe-AutoBuilds/issues)
+[![Request Feature](https://img.shields.io/badge/Request%20Feature-0A0A0A?style=flat&logo=github&logoColor=white)](https://github.com/KScheid/Morphe-AutoBuilds/issues)
 
 
 </div>
@@ -36,13 +33,11 @@ A sophisticated, automated pipeline that assembles installable Android applicati
 
 ## ⚡ At a Glance
 
-> **Note:** This repository hosts **no downloadable files**. Builds are produced automatically every day at 06:00 UTC for personal use. See the [Disclaimer](#️-disclaimer--legal) below.
+> **Note:** Builds are produced automatically every day at 06:00 UTC for **personal use** and published as releases on this repo, one release per app (installable with Obtainium). See the [Disclaimer](#️-disclaimer--legal) below.
 
 ### 📱 Supported Apps & Architectures
 
-The full list of supported apps lives in [`patch-config.json`](patch-config.json) (95 apps and growing). Each app can target `arm64-v8a`, `armeabi-v7a`, and/or `universal` builds, configured in [`arch-config.json`](arch-config.json).
-
-*( Legend: ✅ = Available / ❌ = Not configured )*
+The full list of supported apps lives in [`patch-config.json`](patch-config.json) (31 apps at the time of writing). Each app can target `arm64-v8a`, `armeabi-v7a`, and/or `universal` builds, configured in [`arch-config.json`](arch-config.json).
 
 <!-- OBTAINIUM-START -->
 ## 📲 Add to Obtainium (one tap)
@@ -230,7 +225,7 @@ If you prefer to build the APKs on your own machine, follow these steps.
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/RookieEnough/morphe-AutoBuilds.git
+git clone https://github.com/KScheid/Morphe-AutoBuilds.git
 cd Morphe-AutoBuilds
 
 ```
@@ -298,6 +293,30 @@ Contributions to improve the toolchain or add support for new apps are welcome.
 4. **Commit** your changes (`git commit -m "Add support for new-app"`).
 5. **Push** to the branch (`git push origin feature/new-app`).
 6. **Open** a Pull Request.
+
+---
+
+## 🔀 Changes in this fork
+
+This is a personal fork of [RookieEnough/Morphe-AutoBuilds](https://github.com/RookieEnough/Morphe-AutoBuilds), licensed under the same GPL-3.0. Main differences:
+
+* **Different app list:** `patch-config.json` and `arch-config.json` hold the apps I use, with extra patch sources under `sources/`.
+* **One-tap Obtainium links:** the table above is generated by `scripts/generate_obtainium_links.py` from `obtainium-apps.json`.
+* **GitHub downloads by version:** `src/github.py` accepts a `{version}` tag template and an exact `asset` name (used for Brave).
+* **ReVanced-style sources with `.mpp` patches:** the builder accepts `.mpp` bundles as a fallback.
+* **Patch choices:** premium unlocks are enabled for Plague Inc., Adobe Scan and Brave Origin (`patches/*.txt`).
+
+## 💙 Support the original author
+
+The pipeline was created by RookieEnough. If you want to support their work:
+
+<p align="center">
+  <a href="https://ko-fi.com/rookie_z" target="_blank"><img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" height="30" style="height:30px; border-radius:8px; display:inline-block;" alt="Donate via Ko-fi" /></a>
+  &nbsp;&nbsp;
+  <a href="https://buymeachai.ezee.li/RookieZ" target="_blank"><img src="https://raw.githubusercontent.com/TakiShiwa/donate-with-upi/ffbb38749891aeb62e758a3692698e346e3df2da/Button/SVG/UPI-light-blue-01.svg" height="30" style="height:30px; border-radius:8px; display:inline-block;" alt="Donate via UPI" /></a>
+  <br />
+  <a href="https://paypal.me/RookieEnough" target="_blank"><img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" height="50" style="height:50px; border-radius:8px; display:inline-block; margin-top:8px;" alt="Donate via PayPal" /></a>
+</p>
 
 ---
 
