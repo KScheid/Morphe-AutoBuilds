@@ -668,3 +668,38 @@ def native_abis(apk_path: Path) -> set[str]:
             return {n.split("/")[1] for n in z.namelist() if n.startswith("lib/") and n.count("/") >= 2}
     except Exception:
         return set()
+
+
+def signing_options() -> list[str]:
+    """apksigner keystore options.
+
+    Uses a private keystore when the KEYSTORE_BASE64 secret is provided
+    (see docs/PRIVATE-KEY.md); otherwise falls back to the shared public
+    keystore in keystore/public.jks so forks keep working without setup.
+    Passwords are passed through environment variables, never on the command line.
+    """
+    import base64
+    b64 = (os.environ.get("KEYSTORE_BASE64") or "").strip()
+    if b64:
+        ks_path = Path("keystore") / "private.jks"
+        ks_path.parent.mkdir(exist_ok=True)
+        ks_path.write_bytes(base64.b64decode(b64))
+        ks_pass = os.environ.get("KEYSTORE_PASSWORD") or ""
+        if not ks_pass:
+            raise RuntimeError("KEYSTORE_BASE64 is set but KEYSTORE_PASSWORD is empty")
+        os.environ["_APKSIGNER_KS_PASS"] = ks_pass
+        os.environ["_APKSIGNER_KEY_PASS"] = os.environ.get("KEY_PASSWORD") or ks_pass
+        logging.info("Signing with the private keystore")
+        return [
+            "--ks", str(ks_path),
+            "--ks-pass", "env:_APKSIGNER_KS_PASS",
+            "--key-pass", "env:_APKSIGNER_KEY_PASS",
+            "--ks-key-alias", os.environ.get("KEY_ALIAS") or "release",
+        ]
+    logging.info("Signing with the shared public keystore")
+    return [
+        "--ks", "keystore/public.jks",
+        "--ks-pass", "pass:public",
+        "--key-pass", "pass:public",
+        "--ks-key-alias", "public",
+    ]

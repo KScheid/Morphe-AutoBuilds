@@ -400,10 +400,7 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
         try:
             utils.run_process([
                 str(apksigner), "sign", "--verbose",
-                "--ks", "keystore/public.jks",
-                "--ks-pass", "pass:public",
-                "--key-pass", "pass:public",
-                "--ks-key-alias", "public",
+                *utils.signing_options(),
                 "--in", str(output_apk), "--out", str(signed_apk)
             ], capture=True, stream=True)
         except Exception as e:
@@ -413,10 +410,7 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
             utils.run_process([
                 str(apksigner), "sign", "--verbose",
                 "--min-sdk-version", "21",
-                "--ks", "keystore/public.jks",
-                "--ks-pass", "pass:public",
-                "--key-pass", "pass:public",
-                "--ks-key-alias", "public",
+                *utils.signing_options(),
                 "--in", str(output_apk), "--out", str(signed_apk)
             ], capture=True, stream=True)
 

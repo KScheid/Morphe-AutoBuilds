@@ -90,7 +90,7 @@ This repository utilizes a robust Python-based pipeline to ensure high reliabili
 * **Multi-Source Strategy:** Intelligent fetching from APKMirror, APKPure, and Uptodown ensures high success rates even if one source is down.
 * **Granular Build Control:** Simple text-based configuration allows for precise inclusion or exclusion of specific build options.
 * **Smart Failover:** The system automatically switches download sources if a fetch attempt fails.
-* **Auto-Signing:** All APKs are signed with a consistent public keystore, making them ready to install immediately.
+* **Auto-Signing:** APKs are signed with a consistent key so they install and update cleanly. By default this is a shared public keystore; you can use your own private key instead, see [docs/PRIVATE-KEY.md](docs/PRIVATE-KEY.md).
 * **Clean Release Cycle:** Previous releases are replaced rather than archived, preventing clutter and making it easy for external managers (like Orion) to track updates.
 
 ---
