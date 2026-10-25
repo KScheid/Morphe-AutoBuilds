@@ -136,7 +136,7 @@
         "app_name": "medium",
         "source": "bufferk",
         "arches": [
-            "universal"
+            "arm64-v8a"
         ]
     },
     {
@@ -192,14 +192,14 @@
         "app_name": "autozen",
         "source": "hoomans",
         "arches": [
-            "universal"
+            "arm64-v8a"
         ]
     },
     {
         "app_name": "file-tree-size",
         "source": "gitgitro",
         "arches": [
-            "universal"
+            "arm64-v8a"
         ]
     },
     {
