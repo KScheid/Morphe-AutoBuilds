@@ -21,6 +21,11 @@ def link(app: str, arch: str, info: dict) -> str:
     settings = {
         "filterReleaseTitlesByRegEx": f"^{re.escape(app)} {re.escape(arch)} v".replace("\\-", "-"),
         "autoApkFilterByArch": False,
+        # Each app has exactly one release at a time and its tag changes with
+        # every new version, so track by release instead of comparing with the
+        # installed versionName (e.g. "350.8 - Stable"), which never matches
+        # and triggers Obtainium's "may prevent updates" warning.
+        "versionDetection": False,
         "fallbackToOlderReleases": True,
         "includePrereleases": False,
     }

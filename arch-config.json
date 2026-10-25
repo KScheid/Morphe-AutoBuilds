@@ -80,7 +80,7 @@
         "app_name": "discord",
         "source": "VenusIsJaded",
         "arches": [
-            "universal"
+            "arm64-v8a"
         ]
     },
     {
