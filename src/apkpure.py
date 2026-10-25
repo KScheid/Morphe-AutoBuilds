@@ -9,6 +9,7 @@ API: GET https://tapi.pureapk.com/v3/get_app_his_version
      returns: version_list[] with version_name and asset.urls[0] (direct link)
 """
 
+import json
 import logging
 import re
 
@@ -27,18 +28,32 @@ API_URL = "https://tapi.pureapk.com/v3/get_app_his_version"
 API_HEADERS = {
     "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 13; Pixel 5 Build/TQ3A.230901.001); APKPure/3.20.34 (Aegon)",
     "Ual-Access-Businessid": "projecta",
-    "Ual-Access-ProjectA": '{"device_info":{"abis":["x86_64","arm64-v8a","x86","armeabi-v7a","armeabi"],"android_id":"50f838123d9a9c94","brand":"google","country":"United States","country_code":"US","imei":"","language":"en-US","manufacturer":"Google","mode":"Pixel 5","os_ver":"33","os_ver_name":"13","platform":1,"product":"redfin","screen_height":1080,"screen_width":1920},"host_app_info":{"build_no":"468","channel":"","md5":"6756e53158d6f6c013650a40d8f1147b","pkg_name":"com.apkpure.aegon","sdk_ver":"3.20.34","version_code":3203427,"version_name":"3.20.34"}}',
+    # "Ual-Access-ProjectA" is built per request by _api_headers() so the advertised CPU ABIs match the requested architecture.
     "Connection": "Keep-Alive",
     "Accept-Encoding": "gzip",
 }
 
 
-def _api_versions(package: str):
+_DEVICE_INFO = json.loads('{"device_info":{"abis":["x86_64","arm64-v8a","x86","armeabi-v7a","armeabi"],"android_id":"50f838123d9a9c94","brand":"google","country":"United States","country_code":"US","imei":"","language":"en-US","manufacturer":"Google","mode":"Pixel 5","os_ver":"33","os_ver_name":"13","platform":1,"product":"redfin","screen_height":1080,"screen_width":1920},"host_app_info":{"build_no":"468","channel":"","md5":"6756e53158d6f6c013650a40d8f1147b","pkg_name":"com.apkpure.aegon","sdk_ver":"3.20.34","version_code":3203427,"version_name":"3.20.34"}}')
+
+
+def _api_headers(arch: str | None = None) -> dict:
+    """Headers for the APKPure API. For arm64-v8a builds, advertise an arm64 device
+    so split bundles come with 64-bit native libraries instead of 32-bit ones."""
+    info = json.loads(json.dumps(_DEVICE_INFO))
+    if arch == "arm64-v8a":
+        info["device_info"]["abis"] = ["arm64-v8a", "armeabi-v7a", "armeabi"]
+    headers = dict(API_HEADERS)
+    headers["Ual-Access-ProjectA"] = json.dumps(info, separators=(",", ":"))
+    return headers
+
+
+def _api_versions(package: str, arch: str | None = None):
     """Return the API's version list for a package, or None on failure."""
     try:
         res = session.get(
             API_URL,
-            headers=API_HEADERS,
+            headers=_api_headers(arch),
             params={"package_name": package, "hl": "en"},
             timeout=20,
         )
@@ -90,7 +105,7 @@ def get_latest_version(app_name: str, config: str) -> str:
     package = config.get("package", "")
 
     # API first: no Cloudflare, no FlareSolverr needed.
-    versions = _api_versions(package)
+    versions = _api_versions(package, config.get("arch"))
     if versions:
         latest = (versions[0].get("version_name") or "").strip()
         if latest:
@@ -121,7 +136,7 @@ def get_download_link(version: str, app_name: str, config: str) -> str:
     package = config.get("package", "")
 
     # API first: direct download URL, no Cloudflare.
-    versions = _api_versions(package)
+    versions = _api_versions(package, config.get("arch"))
     if versions:
         entry = _api_match(versions, version)
         if entry:
