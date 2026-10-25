@@ -659,3 +659,12 @@ def ensure_usable_apk(apk_path: Path, app_name: str, version: str) -> Path | Non
         logging.info(f"APK {apk_path.name} passes zip integrity check")
 
     return apk_path
+
+
+def native_abis(apk_path: Path) -> set[str]:
+    """Return the set of ABIs that have native libraries (lib/<abi>/...) in an APK."""
+    try:
+        with zipfile.ZipFile(apk_path, "r") as z:
+            return {n.split("/")[1] for n in z.namelist() if n.startswith("lib/") and n.count("/") >= 2}
+    except Exception:
+        return set()

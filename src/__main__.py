@@ -296,6 +296,17 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
             logging.info(f"Normalized APK file: {input_apk}")
 
         # --- ARCHITECTURE-SPECIFIC PROCESSING ---
+        if arch in ("arm64-v8a", "armeabi-v7a"):
+            # Stripping the other ABIs from a download that does not contain the
+            # requested one would publish an app with no native code at all.
+            abis = utils.native_abis(input_apk)
+            if abis and arch not in abis:
+                logging.error(
+                    f"Downloaded APK for {app_name} v{version} only has native libs for "
+                    f"{sorted(abis)}, not {arch}; refusing to build a broken {arch} APK"
+                )
+                continue
+
         if arch != "universal":
             logging.info(f"Processing APK for {arch} architecture...")
             if arch == "arm64-v8a":
