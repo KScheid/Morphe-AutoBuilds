@@ -167,6 +167,7 @@ def run_process(
         raise e
 
 def normalize_version(version: str) -> list[int]:
+    version = re.sub(r'^[vV](?=\d)', '', version.strip())
     parts = version.split('.')
     normalized = []
     for part in parts:
@@ -274,6 +275,8 @@ def get_supported_versions(package_name: str, cli: str, patches: str) -> Optiona
             if parts:
                 version = parts[0]
                 # Validate it looks like a version (starts with a digit)
+                if version[:1] in ("v", "V") and version[1:2].isdigit():
+                    version = version[1:]
                 if not version[0].isdigit():
                     continue
                 # Check if next parts are "build XXX"
@@ -703,3 +706,35 @@ def signing_options() -> list[str]:
         "--key-pass", "pass:public",
         "--ks-key-alias", "public",
     ]
+
+
+def download_has_abi(apk_path: Path, arch: str) -> bool:
+    """True unless the download clearly lacks native libs for `arch`.
+
+    Handles plain APKs and bundles (.apkm/.xapk/.apks). Unknown -> True.
+    """
+    import io
+    if arch not in ("arm64-v8a", "armeabi-v7a"):
+        return True
+    try:
+        abis = set(native_abis(apk_path))
+        with zipfile.ZipFile(apk_path, "r") as z:
+            for n in z.namelist():
+                if not n.endswith(".apk"):
+                    continue
+                low = n.lower().replace("-", "_")
+                for tag, abi in (("arm64_v8a", "arm64-v8a"), ("armeabi_v7a", "armeabi-v7a"),
+                                 ("x86_64", "x86_64")):
+                    if tag in low:
+                        abis.add(abi)
+                if "config." in low or "split" in low:
+                    continue
+                try:
+                    with zipfile.ZipFile(io.BytesIO(z.read(n))) as inner:
+                        abis |= {m.split("/")[1] for m in inner.namelist()
+                                 if m.startswith("lib/") and m.count("/") >= 2}
+                except Exception:
+                    pass
+        return (not abis) or arch in abis
+    except Exception:
+        return True

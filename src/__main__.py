@@ -160,6 +160,12 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
         downloader.download_apkcombo,
     ]
 
+    # A repo-specific GitHub config (e.g. Brave's monolithic arm64 APK) is the
+    # authoritative source for that app, so try it first.
+    if Path("apps/github", f"{app_name}.json").exists():
+        download_methods.remove(downloader.download_github)
+        download_methods.insert(0, downloader.download_github)
+
     input_apk = None
     version = None
     candidates: list[str] = []
@@ -173,6 +179,12 @@ def run_build(app_name: str, source: str, arch: str = "universal") -> str:
         apk_path = utils.ensure_usable_apk(apk_path, app_name, ver or "")
         if apk_path is None:
             logging.warning(f"Discarding unusable download from {method.__name__}; trying next source")
+            continue
+        if not utils.download_has_abi(apk_path, arch):
+            logging.warning(
+                f"{method.__name__} gave a {app_name} APK without {arch} native libs; trying next source"
+            )
+            Path(apk_path).unlink(missing_ok=True)
             continue
         input_apk, version, candidates = apk_path, ver, cands
         used_method = method
