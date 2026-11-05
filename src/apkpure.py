@@ -147,8 +147,18 @@ def get_download_link(version: str, app_name: str, config: str) -> str:
         logging.info(f"APKPure API has no downloadable {version} for {app_name}; trying FlareSolverr fallback")
 
     # Fallback: scrape the download page via FlareSolverr (for older versions).
-    url = f"https://apkpure.net/{config['name']}/{config['package']}/download/{version}"
+    # Some apps are listed as "v12190" while the CLI reports "12190", so try both.
+    names = [version] if version.lower().startswith("v") else [version, f"v{version}"]
+    for host in ("apkpure.net", "apkpure.com"):
+        for nm in names:
+            url = f"https://{host}/{config['name']}/{config['package']}/download/{nm}"
+            found = _scrape_download(url, app_name, version)
+            if found:
+                return found
+    return None
 
+
+def _scrape_download(url: str, app_name: str, version: str) -> str | None:
     try:
         response = flaresolverr.get_with_bypass(url, session=session, headers=HEADERS, timeout=60) or session.get(url, headers=HEADERS)
         response.raise_for_status()
