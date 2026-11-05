@@ -117,12 +117,6 @@ def get_latest_version(app_name: str, config: str) -> str:
         response = flaresolverr.get_with_bypass(url, session=session, headers=HEADERS, timeout=60) or session.get(url, headers=HEADERS)
         response.raise_for_status()
 
-        # APKPure redirects unknown version slugs to a generic downloader page
-        # that would hand back the wrong (latest) build; treat that as a miss.
-        if "apk-downloader" in str(response.url) or "/download/" not in str(response.url):
-            logging.info(f"APKPure has no page for this version slug: {url}")
-            return None
-
         content_size = len(response.content)
         logging.info(f"URL:{response.url} [{content_size}/{content_size}] -> \"-\" [1]")
 
@@ -168,6 +162,12 @@ def _scrape_download(url: str, app_name: str, version: str) -> str | None:
     try:
         response = flaresolverr.get_with_bypass(url, session=session, headers=HEADERS, timeout=60) or session.get(url, headers=HEADERS)
         response.raise_for_status()
+
+        # APKPure redirects unknown version slugs to a generic downloader page
+        # that would hand back the wrong (latest) build; treat that as a miss.
+        if "apk-downloader" in str(response.url) or "/download/" not in str(response.url):
+            logging.info(f"APKPure has no page for this version slug: {url}")
+            return None
 
         content_size = len(response.content)
         logging.info(f"URL:{response.url} [{content_size}/{content_size}] -> \"-\" [1]")
