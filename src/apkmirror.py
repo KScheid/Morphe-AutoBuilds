@@ -612,6 +612,22 @@ def get_download_link(version: str, app_name: str, config: dict, arch: str = Non
                             logging.warning(f"Using variant {actual_version} (criteria match)")
                         break
     
+    # No arch-specific variant: a universal/noarch build contains the 64-bit
+    # libs too, so it is a valid (if larger) substitute.
+    if not download_page_url and target_arch not in ('universal', 'noarch'):
+        for row in rows:
+            row_text = row.get_text()
+            low = row_text.lower()
+            if 'variant' in low and 'arch' in low:
+                continue
+            if not (version in row_text or version.replace('.', '-') in row_text):
+                continue
+            if 'universal' in low or 'noarch' in low:
+                download_page_url = _extract_row_link(row)
+                if download_page_url:
+                    logging.info(f"No {target_arch} variant; using universal/noarch variant for {app_name} {version}")
+                    break
+
     if not download_page_url:
         logging.error(f"No variant found for {app_name} {version} with criteria {criteria}")
         # Debug: log what rows we found
