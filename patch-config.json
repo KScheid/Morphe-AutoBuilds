@@ -123,10 +123,6 @@
         {
             "app_name": "accubattery",
             "source": "rushiranpise"
-        },
-        {
-            "app_name": "todoist",
-            "source": "hoomans"
         }
     ]
 }

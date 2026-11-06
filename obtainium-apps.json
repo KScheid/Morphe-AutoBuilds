@@ -122,9 +122,5 @@
     "accubattery": {
         "name": "AccuBattery",
         "id": "com.digibites.accubattery"
-    },
-    "todoist": {
-        "name": "Todoist",
-        "id": "com.todoist"
     }
 }
